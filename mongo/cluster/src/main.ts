@@ -10,8 +10,11 @@ const products = client
 
 const stream = products.watch();
 
-products.insertOne({test: "1"})
-
 stream.on("change", (event) => {
   console.log(event);
 });
+
+setInterval(async() => {
+  await products.insertOne({test: "1"})
+}, 1000);
+
